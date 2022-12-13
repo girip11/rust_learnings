@@ -1,0 +1,96 @@
+{
+  "folders": [
+    {
+      "path": "."
+    }
+  ],
+  "settings": {
+    "editor.renderWhitespace": "all",
+
+    "[markdown]": {
+      "editor.codeActionsOnSave": {
+        "source.fixAll.markdownlint": true
+      },
+      "editor.wordWrap": "wordWrapColumn",
+      "editor.wrappingIndent": "none"
+    },
+    "[python]": {
+      "editor.wordWrapColumn": 100
+    },
+    "[rust]": {
+      "editor.formatOnSave": true,
+      "editor.inlayHints.enabled": "on"
+    },
+    "editor.tabSize": 4,
+    "editor.insertSpaces": true,
+    "editor.wordWrap": "wordWrapColumn",
+    "editor.wordWrapColumn": 100,
+    "editor.detectIndentation": false,
+    "editor.fontSize": 18,
+    "editor.fontFamily": "Monaco",
+
+    "terminal.integrated.fontSize": 16,
+    "terminal.integrated.fontFamily": "Monaco",
+    "terminal.integrated.env.osx": {},
+    "git.autorefresh": true,
+    "markdownlint.ignore": ["**/*.md.html"],
+    "files.insertFinalNewline": true,
+    "files.associations": {
+      "*.md.html": "markdown"
+    },
+    "shellcheck.enable": true,
+    "shellcheck.useWorkspaceRootAsCwd": true,
+    "shellcheck.run": "onSave",
+    "shellformat.flag": "-i 2 -ci -sr -bn",
+    "rust-analyzer.debug.engine": "vadimcn.vscode-lldb",
+    "rust-analyzer.debug.openDebugPane": true,
+    "rust-analyzer.cargo.autoreload": true,
+    "rust-analyzer.checkOnSave.overrideCommand": [
+      "cargo",
+      "clippy",
+      "--fix",
+      "--workspace",
+      "--message-format=json",
+      "--all-targets",
+      "--allow-dirty",
+      "--allow-no-vcs"
+    ],
+    // "rust-analyzer.rustfmt.overrideCommand": null,
+    "editor.semanticTokenColorCustomizations": {
+      "rules": {
+        "*.mutable": {
+          // set to empty string to disable underline, which is the default
+          "fontStyle": "underline strikethrough"
+        }
+      }
+    },
+    "emeraldwalk.runonsave": {
+      "commands": [
+        {
+          "match": "\\.rs$",
+          "cmd": "${workspaceFolder}/runonsave.sh '${file}'",
+          "isAsync": false
+        }
+      ]
+    }
+  },
+  "launch": {
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "type": "lldb",
+        "request": "launch",
+        "name": "run hello_world",
+        "program": "${workspaceFolder}/target/debug/hello_world",
+        "args": [],
+        "cwd": "${workspaceFolder}",
+        "sourceMap": {},
+        "sourceLanguages": ["rust"],
+        "env": {
+          "RUST_BACKTRACE": "short",
+          "APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL": "true"
+        }
+      }
+    ]
+  }
+}

@@ -17,3 +17,4 @@ Cargo.lock
 # will have compiled files and executables
 debug/
 target/
+data/
