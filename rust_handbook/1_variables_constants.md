@@ -49,3 +49,8 @@ let spaces = spaces.len(); // integer type
 ```
 
 - When it comes to a mutable variable, reassignments can be done with the same type of data. Assigning data of different type leads to compilation error.
+
+## Comments
+
+- `//`
+- `///` doc strings.
