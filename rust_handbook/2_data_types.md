@@ -7,6 +7,10 @@
 - Floating point
 - Characters
 
+### Boolean type
+
+- `bool` type with `true` and `false` as the only two values.
+
 ### Integer types
 
 - `i8`, `i16`, `i32`, `i64`, `i128`, `isize` - Signed integer(numbers indicate the bits).
@@ -40,14 +44,10 @@ let n = 5u8;
 - `f32`, `f64(default)`. Floats are always signed.
 - IEEE-754 format - `f32` - single precision while `f64` offers double precision.
 
-### Boolean type
-
-- `bool` type with `true` and `false` as the only two values.
-
 ### Character type
 
-- `char` to represent a single character and is enclosed in single quotes.
-- String literals (sequence of characters) are enclosed in double quotes.
+- `char` to represent a single character and is enclosed in **single quotes**.
+- String literals (sequence of characters) are enclosed in **double quotes**.
 - Each character occupies 4 bytes.
 
 ## Compound types

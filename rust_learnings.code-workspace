@@ -64,16 +64,16 @@
     "rust-analyzer.debug.openDebugPane": true,
     "rust-analyzer.rustfmt.rangeFormatting.enable": true,
     "rust-analyzer.cargo.autoreload": true,
-    "rust-analyzer.checkOnSave.overrideCommand": [
-      "cargo",
-      "clippy",
-      "--fix",
-      "--workspace",
-      "--message-format=json",
-      "--all-targets",
-      "--allow-dirty",
-      "--allow-no-vcs"
-    ],
+    // "rust-analyzer.checkOnSave.overrideCommand": [
+    //   "cargo",
+    //   "clippy",
+    //   "--fix",
+    //   "--workspace",
+    //   "--message-format=json",
+    //   "--all-targets",
+    //   "--allow-dirty",
+    //   "--allow-no-vcs"
+    // ],
     // "rust-analyzer.rustfmt.overrideCommand": null,
     "editor.semanticTokenColorCustomizations": {
       "rules": {
