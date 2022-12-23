@@ -23,10 +23,26 @@
     "editor.wordWrapColumn": 100,
     "editor.detectIndentation": false,
     "editor.fontSize": 18,
-    "editor.fontFamily": "Monaco",
+    "editor.fontFamily": "Monaco monospace",
 
+    "prettier.configPath": ".prettierrc.json",
+    "terminal.explorerKind": "integrated",
+    "terminal.integrated.defaultProfile.linux": "bash",
+    "terminal.integrated.profiles.linux": {
+      "bash": {
+        "path": "bash",
+        "args": ["-l"]
+      }
+    },
+    "terminal.integrated.defaultProfile.osx": "bash",
+    "terminal.integrated.profiles.osx": {
+      "bash": {
+        "path": "bash",
+        "args": ["-l"]
+      }
+    },
     "terminal.integrated.fontSize": 16,
-    "terminal.integrated.fontFamily": "Monaco",
+    "terminal.integrated.fontFamily": "monospace",
     "terminal.integrated.env.osx": {
       "RUSTUP_INSTALLATION_DIRECTORY": "${env:HOME}/.rustup",
       "TOOLCHAIN": "nightly-aarch64-apple-darwin"
@@ -42,31 +58,79 @@
     "shellcheck.run": "onSave",
     "shellformat.flag": "-i 2 -ci -sr -bn",
     "rust-analyzer.linkedProjects": [
-      {
-        "sysroot_src": "/Users/girishpasupathy/.rustup/toolchains/nightly-aarch64-apple-darwin/lib/rustlib/src/rust/library",
-        "crates": [
-          {
-            "root_module": "${workspaceFolder}/tryouts/rust_handbook_chapters/src/main.rs",
-            "edition": "2021",
-            "deps": []
-          }
-        ]
-      }
+      "${workspaceFolder}/tryouts/rust_handbook_chapters/Cargo.toml"
     ],
     "rust-analyzer.debug.engine": "vadimcn.vscode-lldb",
     "rust-analyzer.debug.openDebugPane": true,
-    "emeraldwalk.runonsave": {
-      "commands": [
-        {
-          "match": "\\.rs$",
-          "cmd": "${workspaceFolder}/runonsave.sh '${file}' '${workspaceFolder}'",
-          "isAsync": false
+    "rust-analyzer.rustfmt.rangeFormatting.enable": true,
+    "rust-analyzer.cargo.autoreload": true,
+    "rust-analyzer.checkOnSave.overrideCommand": [
+      "cargo",
+      "clippy",
+      "--fix",
+      "--workspace",
+      "--message-format=json",
+      "--all-targets",
+      "--allow-dirty",
+      "--allow-no-vcs"
+    ],
+    // "rust-analyzer.rustfmt.overrideCommand": null,
+    "editor.semanticTokenColorCustomizations": {
+      "rules": {
+        "*.mutable": {
+          // set to empty string to disable underline, which is the default
+          "fontStyle": "underline strikethrough"
         }
-      ]
+      }
     }
+    // "emeraldwalk.runonsave": {
+    //   "commands": [
+    //     {
+    //       "match": "\\.rs$",
+    //       "cmd": "${workspaceFolder}/runonsave.sh '${file}' '${workspaceFolder}'",
+    //       "isAsync": false
+    //     }
+    //   ]
+    // }
+  },
+  // https://gist.github.com/deadalusai/9e13e36d61ec7fb72148
+  "tasks": {
+    "version": "2.0.0",
+    "tasks": [
+      {
+        "label": "Rust: Debug build",
+        "command": "cargo",
+        "type": "shell",
+        "args": ["build", "--bin", "rust_learning"],
+        "options": {
+          "cwd": "${workspaceFolder}/tryouts/rust_handbook_chapters"
+        },
+        "problemMatcher": ["$rustc"],
+        "presentation": {
+          "reveal": "always"
+        },
+        "group": "build"
+      }
+    ]
   },
   "launch": {
     "version": "0.2.0",
-    "configurations": []
+    "configurations": [
+      {
+        "type": "lldb",
+        "request": "launch",
+        "name": "Debug rust file",
+        "preLaunchTask": "Rust: Debug build",
+        "program": "${workspaceFolder}/tryouts/rust_handbook_chapters/target/debug/rust_learning",
+        "args": [],
+        "cwd": "${workspaceFolder}/tryouts/rust_handbook_chapters/target/debug",
+        "sourceLanguages": ["rust"],
+        "env": {
+          "RUST_BACKTRACE": "short",
+          "APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL": "true"
+        },
+        "terminal": "integrated"
+      }
+    ]
   }
 }

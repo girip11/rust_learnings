@@ -27,10 +27,10 @@
     "editor.wordWrapColumn": 100,
     "editor.detectIndentation": false,
     "editor.fontSize": 18,
-    "editor.fontFamily": "Monaco",
+    "editor.fontFamily": "Monaco monospace",
 
     "terminal.integrated.fontSize": 16,
-    "terminal.integrated.fontFamily": "Monaco",
+    "terminal.integrated.fontFamily": "Monaco monospace",
     "terminal.integrated.env.osx": {},
     "git.autorefresh": true,
     "markdownlint.ignore": ["**/*.md.html"],
