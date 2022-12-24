@@ -6,7 +6,8 @@ fn main() {
 
     statement_vs_expression();
     iterate_using_for(10, false);
-    println!("Decremented value {}", decrement(10, 5))
+    println!("Decremented value {}", decrement(10, 5));
+    arrays_and_ownership();
 }
 
 fn statement_vs_expression() -> () {
@@ -23,7 +24,8 @@ fn statement_vs_expression() -> () {
     };
 }
 
-fn decrement(mut value: i32, n: u32) -> i32 {
+fn decrement(value: i32, n: u32) -> i32 {
+    let mut value = value;
     let mut counter = n;
     // let mut val = value;
     // try breaking with while loop
@@ -42,4 +44,13 @@ fn iterate_using_for(end: u32, inclusive: bool) {
     for value in range {
         println!("{value}")
     }
+}
+
+fn arrays_and_ownership() {
+    // arrays since allocated on stack
+    // should be copied on assignment
+    let arr = [1; 5];
+    let arr2 = arr;
+    println!("{}", ((&arr) as *const i32) as usize);
+    println!("{}", ((&arr2) as *const i32) as usize);
 }
