@@ -206,6 +206,14 @@ Rust's default representation of the object in memory.
 
 Tuples follow this representation (refer the snippet above on the size of tuple)
 
+## Explicit typecasting
+
+- `<value> as <type>`
+
+```rust
+println!("Float value as int {}", 100.32 as u8);
+```
+
 ## References
 
 - [Type size and alignment][1]

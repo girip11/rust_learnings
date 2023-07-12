@@ -53,3 +53,25 @@ fn decrement(x: i32) -> i32 {
 
 - There is **NO** builtin language support for **named/keyword arguments**.
 - When dealing with lots of parameters, we can create a struct or set those using builder pattern.
+- Passing array to the function
+
+  - `fn func_name(arr: &[i32])` - Immutable array reference
+  - `fn func_name(arr: &mut[i32])` - Mutable array reference.
+
+- In Rust, we can pass the parameters by value as well as reference.
+
+```rust
+fn example_pass_by_value(mut value: [u32; 4]) -> () {
+    // here the value array is mutable but is a copy of the argument passed
+}
+
+fn example_pass_by_value(value: &mut [u32; 4]) -> () {
+    // here the value array is mutable but is a copy of the argument passed
+}
+```
+
+---
+
+## References
+
+- [Rust pass by value and pass by reference](https://blog.ryanlevick.com/rust-pass-value-or-reference/)
