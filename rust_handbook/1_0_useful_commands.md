@@ -5,7 +5,7 @@
 - Rust compiler. `rustc --version`
 - Clippy - linting
 - `rustfmt` - Formatter
-- rustup -  for managing rust versions
+- rustup - for managing rust versions
 - `rust-gdb` - Debugger
 - cargo - build and package management tool.
 
@@ -14,7 +14,7 @@
 - `rustup update` - Updates rust toolchain
 - `rustup self uninstall` - Uninstall the entire rust toolchain
 - `rustup doc` - Rust programming language documentation opened in the browser (offline access)
-- `rustup component add clippy` - To install a component.
+- `rustup component add clippy` - To install a component. `rustup component list --installed` - To list the installed components
 - `rustup toolchain install nightly --allow-downgrade -c rustfmt` - To install nightly version of the rust toolchain.
 
 - `rustc <src_file>.rs` - Compiles a rust source file.
@@ -26,3 +26,5 @@
 - `cargo build` - Build the project files but in debug mode.
 - `cargo build --release` - produces an optimized build.
 - `cargo run` - Build and run
+- `cargo fmt` - Run the rust-fmt.
+- `cargo clippy` - Run the clippy linter

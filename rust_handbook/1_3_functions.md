@@ -46,3 +46,10 @@ fn decrement(x: i32) -> i32 {
     x - 1
 }
 ```
+
+- `return <expr>;` statements return the value of the `expr` eventhough it ends with a `;`, while just an `expr ;` as the last statement of a function or a block doesnt return anything.
+
+## Additional notes
+
+- There is **NO** builtin language support for **named/keyword arguments**.
+- When dealing with lots of parameters, we can create a struct or set those using builder pattern.
