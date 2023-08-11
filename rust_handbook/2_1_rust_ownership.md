@@ -24,8 +24,8 @@ let y = x;
 ```
 
 - Heap less organized. Space is allocated on the heap to store the data. The result of allocation is that we get a pointer to an empty/available spot in the heap.
-- The pointer(which points to a space on the heap) can be stored on the heap and its of fixed and known size.
-- Pushing to the stack faster than allocating on heap. Allocating on heap requires search for empty spots plus bookkeeping logic.
+- The pointer(which points to a space on the heap) can be stored on the stack and its of fixed and known size.
+- Pushing to the stack is faster than allocating on heap. Allocating on heap requires search for empty spots plus bookkeeping logic.
 - Accessing data from heap is slower compared to accessing it on stack.
 - Function parameters and local variables are pushed on to the stack and they are popped off the stack once the function is over.
 - Heap management is what ownership addresses.
