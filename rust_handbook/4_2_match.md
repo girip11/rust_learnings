@@ -18,15 +18,16 @@ fn value_in_cents(coin: Coin) -> u8 {
     match coin {
         // Each of this is referred to as an arm
         Coin::Penny => {
-            println!("Arm can also be a block expression.")
-            1,
-        }
+            println!("Arm can also be a block expression.");
+            1
+        },
         Coin::Nickel => 5,
         Coin::Dime => 10,
         // patterns binding to the values
         Coin::Quarter(state) => {
-            println!("State: {:?}", state)
-            25,
+            println!("State: {:?}", state);
+            25
+        },
     }
 }
 ```

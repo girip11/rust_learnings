@@ -46,7 +46,7 @@ fn read_username_from_file() -> Result<String, io::Error> {
 
 **NOTE**- The `?` operator can only be used in a function that returns `Result` or `Option` (or another type that implements `FromResidual`)
 
-- We can read an entire file to a `String` using `std::fs::read_to_string`
+- We can read an entire file to a `String` using `std::fs::File.read_to_string`
 
 ## `?` vs `match`
 

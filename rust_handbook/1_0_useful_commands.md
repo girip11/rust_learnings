@@ -8,6 +8,7 @@
 - rustup - for managing rust versions
 - `rust-gdb` - Debugger
 - cargo - build and package management tool.
+- [`miri`](https://github.com/rust-lang/miri) - Rust's midlevel intermediate representation Interpreter. Useful to catch certain classes of undefined behaviour. It can run binaries and cargo test suites.
 
 ## Useful commands
 
@@ -25,6 +26,7 @@
 - `cargo check` - Checks if the project can compile successfully to produce a binary. Much faster than build while developing.
 - `cargo build` - Build the project files but in debug mode.
 - `cargo build --release` - produces an optimized build.
+- `cargo test` -Run the tests.
 - `cargo run` - Build and run
 - `cargo fmt` - Run the rust-fmt.
 - `cargo clippy` - Run the clippy linter

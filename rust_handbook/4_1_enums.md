@@ -36,11 +36,19 @@ With the ability to hold values in the enums, we can use it to better represent 
 ```rust
 // Different ways to define an enum field
 enum Message {
-    Quit,
+    Quit, // unit struct
     Move { x: i32, y: i32 }, // struct like definition without using struct keyword
-    Write(String), // fn definition but no fn keyword is used
+    Write(String), // tuple struct syntax
     ChangeColor(i32, i32, i32),
 }
+// Above enum can be thought of having four different structs in it
+struct QuitMessage; // unit struct
+struct MoveMessage {
+    x: i32,
+    y: i32,
+}
+struct WriteMessage(String); // tuple struct
+struct ChangeColorMessage(i32, i32, i32); // tuple struct
 ```
 
 ## `Option` enum

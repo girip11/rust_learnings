@@ -167,7 +167,7 @@ impl Rectangle {
 }
 ```
 
-> Methods can take ownership of `self`, borrow `self`(`&mut self`) **immutably** as we’ve done here, or `borrow` self **mutably**, just as they can any other parameter.
+> Methods can take ownership of `self`, borrow `self`(`&self`) **immutably** as we’ve done here, or `borrow` self **mutably** (`&mut self`), just as they can any other parameter.
 > Having a method that takes ownership of the instance by using just self as the first parameter is rare; this technique is usually used when the method transforms self into something else and you want to prevent the caller from using the original instance after the transformation.
 
 - Mutable or immutable borrow of self is more common.
