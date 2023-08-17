@@ -1,56 +1,50 @@
-fn main() {
-    let _n = 5u8;
-    let _large_number = 1_000;
-    let _arr = [0; 5];
-    println!("Hello world");
+// Given a list of integers, use a vector and return the median (when sorted,
+// the value in the middle position) and mode (the value that occurs most often;
+// a hash map will be helpful here) of the list.
 
-    statement_vs_expression();
-    iterate_using_for(10, false);
-    println!("Decremented value {}", decrement(10, 5));
-    arrays_and_ownership();
+fn find_median(numbers: &mut Vec<i32>) -> i32 {
+    numbers.sort();
+    let count = numbers.len();
+    let median_index = if count % 2 != 0 {
+        count / 2
+    } else {
+        (count + 1) / 2
+    };
+    numbers[median_index]
 }
 
-fn statement_vs_expression() -> () {
-    // x is of type int32 here.
-    let _x = {
-        let y = 5;
-        y + 10 // this is an expression
-    };
+// Convert strings to pig latin. The first consonant of each word is moved to
+// the end of the word and “ay” is added, so “first” becomes “irst-fay.” Words
+// that start with a vowel have “hay” added to the end instead (“apple” becomes
+// “apple-hay”). Keep in mind the details about UTF-8 encoding!
 
-    // x is of type unit
-    let x = {
-        let y = 5;
-        y + 10; // this is a statement
-    };
-}
+fn convert_pig_latin(given: &str) -> String {
+    if given.len() == 0 {
+        return String::new();
+    }
 
-fn decrement(value: i32, n: u32) -> i32 {
-    let mut value = value;
-    let mut counter = n;
-    // let mut val = value;
-    // try breaking with while loop
-    while true {
-        if counter == 0 {
-            break;
+    match given.chars().nth(0).unwrap() {
+        'a' | 'e' | 'i' | 'o' | 'u' => format!("{}-hay", given),
+        _ => {
+            format!(
+                "{}-{}ay",
+                &given.chars().skip(1).collect::<String>(),
+                //&given.chars().take(1).last().unwrap(),
+                &given.chars().next().unwrap(),
+            )
         }
-        value -= 1;
-        counter -= 1;
-    }
-    value
-}
-
-fn iterate_using_for(end: u32, inclusive: bool) {
-    let range: std::ops::RangeInclusive<u32> = if inclusive { 0..=end } else { 0..=(end - 1) };
-    for value in range {
-        println!("{value}")
     }
 }
 
-fn arrays_and_ownership() {
-    // arrays since allocated on stack
-    // should be copied on assignment
-    let arr = [1; 5];
-    let arr2 = arr;
-    println!("{}", ((&arr) as *const i32) as usize);
-    println!("{}", ((&arr2) as *const i32) as usize);
+// Using a hash map and vectors, create a text interface to allow a user to add
+// employee names to a department in a company. For example, “Add Sally to
+// Engineering” or “Add Amir to Sales.” Then let the user retrieve a list of all
+// people in a department or all people in the company by department, sorted
+// alphabetically.
+
+fn main() {
+    let mut numbers = vec![-5, 1, -4, 2, 5];
+    println!("{}", find_median(&mut numbers));
+
+    println!("{}", convert_pig_latin("first"));
 }

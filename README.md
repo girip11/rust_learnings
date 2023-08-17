@@ -13,3 +13,4 @@ Documenting my rust learnings
 
 - [Rust hand book](https://doc.rust-lang.org/book)
 - [Rustlings](https://github.com/rust-lang/rustlings)
+- [Rust hand book summary](https://psibi.in/rust-book-summary)
