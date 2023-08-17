@@ -88,3 +88,32 @@ for b in "Зд".bytes() {
     println!("{b}");
 }
 ```
+
+## Understanding String vs String slice(`&str`)
+
+- Consider a `String` to be 3 word sized object, while `&str` is a 2 word sized.
+
+```rust
+// 3 words - On 64-bit system, it occupies 24 bytes (8*3)
+struct String {
+    ptr: *mut u8, // Address of the starting location of the string
+    len: usize, // current length. length <= capacity
+    cap: usize, // current capacity allocated
+}
+
+struct StringSlice {
+    ptr: *const u8, // stores the address of the string encoded in UTF-8
+    len: usize,
+}
+```
+
+- `&String` stores a reference to the `String` object described above. To access the content from a reference, we dereference two levels (deref `ref` -> deref `ptr`)
+
+- `&str` - One level of deferencing (deref `ptr`). Except in cases where we store like `Vec<&str>` and `vec.iter()` yields `&&str`.
+
+> `String/str` - THE string type.
+> `Vec<u8>/[u8]` - Just bytes. Not a string. (Except...)
+> `PathBuf/Path` - A file path with a rich structure depending on the current platform.
+> `OsString/OsStr` - An operating system dependent representation of an operating system's notion of strings.
+> `CString/CStr` - How C does strings. Only useful for interop.
+> [Reference](https://www.reddit.com/r/rust/comments/gnd4bd/things_i_hate_about_rust/fr9179w/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button)
