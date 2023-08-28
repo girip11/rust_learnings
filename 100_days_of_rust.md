@@ -68,6 +68,8 @@ By the end of first 4 weeks, we are completing till the chapters 9 error handlin
 
 By the end of week-7 we would have completed 49 days. We will make a checkpoint here, meet and plan further on the following topics.
 
+There is a slight deviation in the study plan. We will be learning the same topics from above but from the Programming Rust book and practising more Rust programming. We will resume the following topics from the month of October, 2023.
+
 Advanced topics that we intend to cover from day 50 - day 100
 During the week 8-13, feel free to practice advent of code and exercism exercises as much as you can to firmly grasp the previously learnt concepts while we advance further in the language.
 

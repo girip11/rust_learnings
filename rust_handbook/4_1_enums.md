@@ -70,3 +70,26 @@ let some_number = Some(5);
 
 > In other words, you have to convert an `Option<T>` to a `T` before you can perform `T` operations with it. Generally, this helps catch one of the most common issues with null: assuming that something isn’t null when it actually is.
 > The `Option<T>` enum has a large number of methods that are useful in a variety of situations; you can check them out in its documentation. Becoming familiar with the methods on `Option<T>` will be extremely useful in your journey with Rust.
+
+## Enum size
+
+> enum size = largest variant size + a macrosopic amount of space to recognize enum variants + some padding.
+
+```rust
+#[derive(Copy, Clone)]
+struct Coordinate(u64, u64);
+
+#[derive(Copy, Clone)]
+enum Status {
+    Empty,
+    Nothing,
+    Closest(Coordinate), // 16 bytes
+}
+// Above enum size will be 16 bytes(size of the largest variant) + 8 bytes(storing the discriminator) + some bytes to identify the stored enum + padding(alignment of 8) = 24 bytes
+
+// size is 1 byte (u8) + 1 byte (union discriminator) = 2 bytes
+enum Option<u8> {
+    Some(u8),
+    None,
+}
+```
