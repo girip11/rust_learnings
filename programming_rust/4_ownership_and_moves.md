@@ -132,3 +132,30 @@ struct RandomStruct {
 ```
 
 - For loop takes ownership of the vector. So always pass a reference of a vector.
+
+- Why ownership and only a single owner? Suppose we have multiple owners in the same scope, then when all those owners go out of scope and since they all share the same heap memory, multiple free calls will be made(double free error). To avoid this, there should always be exactly one owner at a point in time.
+
+```rust
+// suppose String was copyable
+{
+    let owner1 = String::from("Hello");
+    let owner2 = owner1; // Say this does a copy
+    owner1.push_str("some big string value that exceeds current capacity and causes reallocation");
+} // owner1 and owner2 will be called free to free the heap space leading to
+// double free error. Hence only one owner is allowed for a value.
+```
+
+- Why types like `String` and `Vec` are not copyable? Because these structures can grow dynamically and due to this, their underlying heap storage can be reallocated and hence a new memory address which then needs to be updated on all the owners.
+
+```rust
+// suppose String was copyable
+let owner1 = String::from("Hello");
+let owner2 = owner1; // Say this does a copy
+owner1.push_str("some big string value that exceeds current capacity and causes reallocation");
+// owner1 will now point to the new memory heap location
+// owner2 will point to the old address that contained only `"Hello"` but
+// which would have been freed by now. Thus the memory address in the owner2's copy
+// points to an invalid address(dangling pointer).
+```
+
+But these types implement `clone`, which does a deep copy. Copies the underlying heap data to new heap location plus creates a new VALUE PROPER with its new heal location.
