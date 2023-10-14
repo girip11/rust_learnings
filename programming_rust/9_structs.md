@@ -187,12 +187,31 @@ pub struct SpiderRobot {
 
 - `RefCell<T>` supports borrowing references to its `T` value.
   Useful methods
+- `RefCell` enforces borrow references rules in runtime.
 - `RefCell::new(value)` - Creates a new RefCell, moving value into it.
 - `ref_cell.borrow()` - Returns a `Ref<T>`, which is essentially just a shared reference to the value stored in ref_cell. This method panics if the value is already mutably borrowed;
-- `ref_cell.borrow_mut()` - Returns a `RefMut<T>`, essentially a mutable reference to the value in ref_cell. This method panics if the value is already borrowed;
-- `ref_cell.try_borrow()`, `ref_cell.try_borrow_mut()` - Work just like borrow() and borrow_mut(), but return a `Result`. Instead of panicking if the value is already mutably borrowed, they return an `Err` value.
+- `ref_cell.borrow_mut()` - Returns a `RefMut<T>`, essentially a mutable reference to the value in ref_cell. **This method panics if the value is already borrowed**;
 
-- `RefCell` enforces borrow references rules in runtime.
+```rust
+use std::cell::RefCell;
+
+struct Book {
+    name: String,
+    description:  RefCell<String>,
+}
+
+fn main() {
+    let instance = Book {
+            name: String::from("Hello"),
+            description: RefCell::new("value".to_string())
+        };
+
+    // This wont raise any compilation errors. But the program will panic.
+    // Thus the Rust borrow checker rules are enforced in the runtime when using RefCell.
+    println!("{}, {}", instance.description.borrow(), instance.description.borrow_mut());
+```
+
+- `ref_cell.try_borrow()`, `ref_cell.try_borrow_mut()` - Work just like borrow() and borrow_mut(), but return a `Result`. Instead of panicking if the value is already mutably borrowed, they return an `Err` value.
 
 **NOTE** - Cells and any types that contain cells are not thread safe
 
